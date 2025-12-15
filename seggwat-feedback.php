@@ -1,11 +1,11 @@
 <?php
 /**
  * Plugin Name: SeggWat Feedback
- * Plugin URI: https://seggwat.com
+ * Plugin URI: https://github.com/SeggWat/wp-plugin-seggwat
  * Description: Collect user feedback directly from your WordPress site with a beautiful, customizable widget. Features: customizable button color & position, multi-language support (EN/DE/SV), per-page control, and white-label options. Requires a free SeggWat account and Project Key from seggwat.com to display the widget.
  * Version: 1.6.0
  * Author: Hauke Jung
- * Author URI: https://seggwat.com
+ * Author URI: https://haukejung.de
  * License: GPL-2.0+
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: seggwat-feedback
