@@ -14,6 +14,8 @@ Collect user feedback directly from your WordPress site with a beautiful, custom
 
 SeggWat Feedback adds a lightweight feedback widget to your WordPress site, allowing visitors to submit bug reports, feature requests, praise, and questions directly from any page.
 
+**This plugin connects to the SeggWat service** ([seggwat.com](https://seggwat.com)) to collect and manage feedback. A free SeggWat account and Project Key are required. By using this plugin, you agree to the [SeggWat Terms of Service](https://seggwat.com/legal/terms) and [Privacy Policy](https://seggwat.com/legal/privacy).
+
 **Features:**
 
 * Customizable button color and position
@@ -52,9 +54,9 @@ Log in to your SeggWat dashboard, select your project, and copy the Project Key 
 
 Yes. Each post and page has a "SeggWat Feedback" meta box in the editor where you can choose: Default (site setting), Force enable, or Disable.
 
-= Can I hide the SeggWat branding? =
+= Can I show SeggWat branding in the widget? =
 
-Yes. Uncheck "Show Branding" in Settings > SeggWat Feedback to hide the "Powered by SeggWat" footer in the widget.
+Yes. Check "Show Branding" in Settings > SeggWat Feedback to display the "Powered by SeggWat" footer. Branding is hidden by default.
 
 = What languages are supported? =
 
@@ -69,6 +71,22 @@ Yes. The plugin provides several filters:
 * `seggwat/language` - Override language setting
 * `seggwat/show_powered_by` - Control branding visibility
 * `seggwat/post_types` - Add widget control to custom post types
+
+= What data is sent to SeggWat? =
+
+When a visitor submits feedback, the following data is sent to seggwat.com:
+
+* The feedback message and type (bug, feature request, etc.)
+* The current page URL
+* Browser and device information (user agent)
+* Optional screenshot (if enabled and user captures one)
+
+No data is collected until a visitor actively submits feedback. The widget script is loaded from seggwat.com when the plugin is configured with a valid Project Key.
+
+= Where can I find the Terms of Service and Privacy Policy? =
+
+* Terms of Service: [seggwat.com/legal/terms](https://seggwat.com/legal/terms)
+* Privacy Policy: [seggwat.com/legal/privacy](https://seggwat.com/legal/privacy)
 
 == Screenshots ==
 

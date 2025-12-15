@@ -45,14 +45,8 @@ Select the interface language:
 
 #### Show Branding
 Control the "Powered by SeggWat" footer visibility:
-- ✅ **Checked** (default) - Shows SeggWat branding in the widget footer
-- ❌ **Unchecked** - Hides branding for white-label implementations
-
-**Perfect for:**
-- Agency projects where you provide feedback solutions to clients
-- White-label WordPress themes or plugins
-- Sites with strict brand consistency requirements
-- Enterprise deployments
+- ❌ **Unchecked** (default) - Hides branding for clean integration
+- ✅ **Checked** - Shows SeggWat branding in the widget footer
 
 #### Default Behavior
 Choose the default widget injection behavior:

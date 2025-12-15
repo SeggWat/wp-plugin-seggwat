@@ -100,8 +100,8 @@ msgstr ""
 msgid "Show \"Powered by SeggWat\" in widget footer"
 msgstr ""
 
-#: seggwat-feedback.php:223
-msgid "Uncheck to hide the branding for white-label implementations or strict brand requirements."
+#: seggwat-feedback.php:226
+msgid "Check to display \"Powered by SeggWat\" in the widget footer."
 msgstr ""
 
 #: seggwat-feedback.php:254
