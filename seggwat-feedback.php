@@ -10,7 +10,7 @@
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: seggwat-feedback
  * Requires at least: 5.0
- * Tested up to: 6.4
+ * Tested up to: 6.9
  * Requires PHP: 7.4
  */
 
@@ -46,8 +46,6 @@ final class SeggWat_Feedback_Plugin
 
     public function __construct()
     {
-        add_action("plugins_loaded", [$this, "i18n"]);
-
         // Settings UI
         add_action("admin_init", [$this, "register_settings"]);
         add_action("admin_menu", [$this, "add_settings_page"]);
@@ -64,15 +62,6 @@ final class SeggWat_Feedback_Plugin
 
         // Front-end injection
         add_action("wp_enqueue_scripts", [$this, "enqueue_widget"]);
-    }
-
-    public function i18n()
-    {
-        load_plugin_textdomain(
-            "seggwat-feedback",
-            false,
-            dirname(plugin_basename(__FILE__)) . "/languages",
-        );
     }
 
     /** SETTINGS */
@@ -141,6 +130,7 @@ final class SeggWat_Feedback_Plugin
                 echo '<p class="description">';
                 printf(
                     wp_kses(
+                        /* translators: %s: URL to SeggWat dashboard */
                         __(
                             'Required. Get your Project Key from the <a href="%s" target="_blank">SeggWat Dashboard</a>. Create a free account if you don\'t have one yet.',
                             "seggwat-feedback",
@@ -406,18 +396,19 @@ final class SeggWat_Feedback_Plugin
             $settings_url = esc_url(
                 admin_url("options-general.php?page=" . self::SLUG),
             );
-            echo '<div class="notice notice-warning"><p>' .
-                sprintf(
-                    wp_kses(
-                        __(
-                            'SeggWat Feedback: please <a href="%1$s">set your project key</a> to enable the widget.',
-                            "seggwat-feedback",
-                        ),
-                        ["a" => ["href" => []]],
+            echo '<div class="notice notice-warning"><p>';
+            printf(
+                wp_kses(
+                    /* translators: %1$s: URL to plugin settings page */
+                    __(
+                        'SeggWat Feedback: please <a href="%1$s">set your project key</a> to enable the widget.',
+                        "seggwat-feedback",
                     ),
-                    $settings_url,
-                ) .
-                "</p></div>";
+                    ["a" => ["href" => []]],
+                ),
+                esc_url($settings_url),
+            );
+            echo "</p></div>";
         }
     }
 
@@ -508,10 +499,11 @@ final class SeggWat_Feedback_Plugin
 
     public function save_meta_box($post_id)
     {
-        if (
-            !isset($_POST["seggwat_meta_nonce"]) ||
-            !wp_verify_nonce($_POST["seggwat_meta_nonce"], "seggwat_meta_box")
-        ) {
+        if (!isset($_POST["seggwat_meta_nonce"])) {
+            return;
+        }
+        $nonce = sanitize_text_field(wp_unslash($_POST["seggwat_meta_nonce"]));
+        if (!wp_verify_nonce($nonce, "seggwat_meta_box")) {
             return;
         }
         if (defined("DOING_AUTOSAVE") && DOING_AUTOSAVE) {
@@ -525,7 +517,7 @@ final class SeggWat_Feedback_Plugin
         }
 
         $raw = isset($_POST[self::META_BEHAVIOR])
-            ? (string) $_POST[self::META_BEHAVIOR]
+            ? sanitize_text_field(wp_unslash($_POST[self::META_BEHAVIOR]))
             : "";
         $val = in_array($raw, ["", "enable", "disable"], true) ? $raw : "";
 

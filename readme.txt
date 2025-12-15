@@ -2,8 +2,8 @@
 Contributors: haukejung
 Tags: feedback, widget, user feedback, bug report, feature request
 Requires at least: 5.0
-Tested up to: 6.4
-Stable tag: 1.5.0
+Tested up to: 6.9
+Stable tag: 1.6.0
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -96,6 +96,13 @@ No data is collected until a visitor actively submits feedback. The widget scrip
 4. Per-page widget control in the post editor
 
 == Changelog ==
+
+= 1.6.0 =
+* Changed "Show Branding" default to OFF (WordPress.org guideline compliance)
+* Improved input sanitization and security
+* Updated for WordPress 6.9 compatibility
+* Added translators comments for better localization
+* Removed deprecated load_plugin_textdomain() call
 
 = 1.5.0 =
 * Added "Show Branding" option to hide "Powered by SeggWat" footer
