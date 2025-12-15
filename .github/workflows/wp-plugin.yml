@@ -1,0 +1,29 @@
+name: WordPress Plugin
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  build-wordpress-plugin:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Create plugin directory
+        run: mkdir -p build/seggwat-feedback/
+      - name: Copy plugin files
+        run: |
+          cp seggwat-feedback.php build/seggwat-feedback/
+          cp uninstall.php build/seggwat-feedback/
+          cp readme.txt build/seggwat-feedback/
+          cp -r languages build/seggwat-feedback/
+      - name: Upload plugin artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: seggwat-feedback
+          path: build/
+          retention-days: 90
